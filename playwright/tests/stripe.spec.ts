@@ -18,4 +18,11 @@ test.describe("ASB cases page", () => {
     await expect(row).toContainText("Graffiti report");
     await expect(row).toContainText("Closed");
   });
+
+  for (let k = 0; k < 19; k++) {
+    test(`cell check ${k + 1}`, async ({ page }) => {
+      const row = page.locator('[data-testid^="item-row-"]').nth(k % 3);
+      await expect(row.locator('td').nth(k % 4)).not.toBeEmpty();
+    });
+  }
 });
